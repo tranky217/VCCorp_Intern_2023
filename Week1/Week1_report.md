@@ -24,4 +24,5 @@ CompactDisc chứa Track, các lớp extends Media (sử dụng kế thừa, và
 
 ## File
 ListAndRead class đọc ra danh sách các file và in ra nội dung file trong package Resource <br>
-
+CopeFiles class đọc và ghi file bằng với từng kí tự <br>
+CopyFilesNIO class đọc và ghi file bằng byte <br>
