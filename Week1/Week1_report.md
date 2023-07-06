@@ -13,5 +13,6 @@ CompactDisc - kế thừa Disc, thêm một vài trường thông tin <br>
 Track - nằm trong CompactDisc (kết tập) <br>
 
 Playable - là interface cho các lớp con Media thực thi (không có Book) <br>
+Các lớp thực thi Playable in ra thông tin tương ứng của lớp đó <br>
 Store - chứa các mặt hàng được thêm vào <br>
 Cart - chứa các mặt hàng được thêm vào giỏ hàng <br>
