@@ -16,3 +16,9 @@ Playable - là interface cho các lớp con Media thực thi (không có Book) <
 Các lớp thực thi Playable in ra thông tin tương ứng của lớp đó <br>
 Store - chứa các mặt hàng được thêm vào <br>
 Cart - chứa các mặt hàng được thêm vào giỏ hàng <br>
+
+### Mô tả
+Trong Store, Cart class đều chứa các List<Media>, khi tạo mới các thực thể của các lớp con và add vào list -> Tự động upcast (đa hình) <br>
+Một số lớp implement Playable (sử dụng interface) <br>
+CompactDisc chứa Track, các lớp extends Media (sử dụng kế thừa, và kết tập) <br>
+
