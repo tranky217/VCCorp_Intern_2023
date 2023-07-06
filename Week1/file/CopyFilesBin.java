@@ -2,30 +2,25 @@ package Week1.file;
 
 import java.io.*;
 import java.nio.file.*;
-/**
- * Copy one file to another using low level byte streams, one byte at a time.
- * @author www.codejava.net
- */
-public class CopyFilesNIO {
+public class CopyFilesBin {
     public static void main(String[] args) {
 
         String currentDir = System.getProperty("user.dir");
         String path = currentDir + "\\" + "VCCorp_Intern_2023" + "\\" + "Week1" + "\\" + "file" + "\\" + "Resources" + "\\";
         String path1 = path + "test1.txt";
-        String path2 = path + "out.txt";
+        String path2 = path + "outbin.txt";
 
         String inputFile = path1;
         String outputFile = path2;
 
         try {
-            long start = System.currentTimeMillis();
-            byte[] allBytes = Files.readAllBytes(Paths.get(inputFile));
+            FileInputStream fin = new FileInputStream(inputFile);
+            FileOutputStream fout = new FileOutputStream(outputFile);
+            int byteread;
+            while((byteread = fin.read()) != -1){
+                fout.write(byteread);
+            }
 
-            Files.write(Paths.get(outputFile), allBytes);
-
-            long end = System.currentTimeMillis();
-
-            System.out.println("Copied in " + (end - start) + " ms");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
