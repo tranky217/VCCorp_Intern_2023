@@ -22,3 +22,6 @@ Trong Store, Cart class đều chứa các List<Media>, khi tạo mới các th�
 Một số lớp implement Playable (sử dụng interface) <br>
 CompactDisc chứa Track, các lớp extends Media (sử dụng kế thừa, và kết tập) <br>
 
+## File
+ListAndRead class đọc ra danh sách các file và in ra nội dung file trong package Resource <br>
+
