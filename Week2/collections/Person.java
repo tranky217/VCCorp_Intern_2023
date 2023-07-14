@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-
-public class Person {
+import  java.io.Serializable;
+public class Person implements CompanyMember {
     public static int np = 0;
     public static List<Integer> pidList = new ArrayList<>();
     public static final Comparator<Person> COMPARE_BY_AGE = new PersonComparatorByAge();
@@ -87,6 +87,10 @@ public class Person {
             randomeNumber += 1;
         }
         return randomeNumber;
+    }
+
+    public void sendNotification(String company, String event){
+        System.out.println("from: " + company + " to: " + this.getName() +  "\n content: " + event);
     }
     @Override
     public String toString(){
