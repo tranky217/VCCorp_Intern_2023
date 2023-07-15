@@ -1,4 +1,4 @@
-package Week2.design_patterns;
+package Week2.Design_patterns;
 import Week2.collections.*;
 public class InternToEmpoyee extends Employee {
     private Intern intern;

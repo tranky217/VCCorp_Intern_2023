@@ -1,8 +1,8 @@
-package Week2.serialize;
+package Week2.Serialize;
 
-import Week2.collections.Employee;
-import Week2.collections.Intern;
-import Week2.collections.Person;
+import Week2.Collections.Employee;
+import Week2.Collections.Intern;
+import Week2.Collections.Person;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

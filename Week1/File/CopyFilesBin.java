@@ -1,7 +1,7 @@
-package Week1.file;
+package Week1.File;
 
 import java.io.*;
-import java.nio.file.*;
+
 public class CopyFilesBin {
     public static void main(String[] args) {
 

@@ -1,4 +1,4 @@
-package Week2.design_patterns;
+package Week2.Design_patterns;
 
 public class test {
     public static void main(String[] args) {

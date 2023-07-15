@@ -1,13 +1,11 @@
 package Week2.Collections;
 
-import Week1.oop.Media;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-import  java.io.Serializable;
-public class Person implements CompanyMember {
+
+public class Person implements Week2.collections.CompanyMember {
     public static int np = 0;
     public static List<Integer> pidList = new ArrayList<>();
     public static final Comparator<Person> COMPARE_BY_AGE = new PersonComparatorByAge();

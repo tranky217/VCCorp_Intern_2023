@@ -1,6 +1,6 @@
-package Week2.collections;
+package Week2.Collections;
 
-import Week2.collections.Person;
+//import Week2.collections.Person;
 
 import java.util.ArrayList;
 import java.util.List;

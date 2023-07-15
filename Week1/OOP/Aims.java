@@ -1,5 +1,4 @@
-package Week1.oop;
-import java.util.Collections;
+package Week1.OOP;
 import java.util.Scanner;
 
 public class Aims {

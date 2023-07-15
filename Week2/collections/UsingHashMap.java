@@ -1,4 +1,6 @@
-package Week2.collections;
+package Week2.Collections;
+
+import Week2.Collections.Person;
 
 import java.util.HashMap;
 import java.util.Iterator;
