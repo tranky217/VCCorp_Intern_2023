@@ -1,2 +1,4 @@
-package Week2.Collections;public class UseArrayList {
+package Week2.Collections;
+
+public class UseArrayList {
 }

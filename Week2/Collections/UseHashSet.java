@@ -1,2 +1,4 @@
-package Week2.Collections;public class UseHashSet {
+package Week2.Collections;
+
+public class UseHashSet {
 }

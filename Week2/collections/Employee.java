@@ -1,4 +1,4 @@
-package Week2.collections;
+package Week2.Collections;
 
 public class Employee extends Person{
     private int salary;

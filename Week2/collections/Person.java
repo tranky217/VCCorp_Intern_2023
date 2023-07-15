@@ -1,4 +1,4 @@
-package Week2.collections;
+package Week2.Collections;
 
 import Week1.oop.Media;
 

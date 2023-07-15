@@ -28,7 +28,9 @@ public class CopyFiles {
                 }
                 int character;
                 while((character = reader.read()) != -1){
+                    System.out.println(character);
                     writer.write(character);
+
                 }
                 writer.close();
                 reader.close();
