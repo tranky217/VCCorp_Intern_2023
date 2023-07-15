@@ -3,6 +3,11 @@ package Week2.Collections;
 public class Employee extends Person{
     private int salary;
 
+    public Employee(int pid, String name, int salary) {
+        super(pid, name);
+        this.salary = salary;
+    }
+
     public Employee(int salary) {
         super();
         this.salary = salary;
@@ -21,12 +26,18 @@ public class Employee extends Person{
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public int setSalary(int salary) {
         this.salary = salary;
+        return salary;
     }
 
     @Override
     public String toString(){
         return super.toString() + " " + this.getSalary();
     }
+
+    public int receiveSalary(){
+        return this.setSalary(this.getSalary() + 100);
+    }
+
 }

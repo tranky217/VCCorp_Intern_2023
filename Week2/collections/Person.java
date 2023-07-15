@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-
-public class Person {
+import  java.io.Serializable;
+public class Person implements CompanyMember {
     public static int np = 0;
     public static List<Integer> pidList = new ArrayList<>();
     public static final Comparator<Person> COMPARE_BY_AGE = new PersonComparatorByAge();
@@ -15,6 +15,11 @@ public class Person {
     private String name;
     private int age;
     private String role;
+
+    public Person(int pid, String name) {
+        this.pid = pid;
+        this.name = name;
+    }
 
     public Person(){
 
@@ -83,6 +88,10 @@ public class Person {
         }
         return randomeNumber;
     }
+
+    public void sendNotification(String company, String event){
+        System.out.println("from: " + company + " to: " + this.getName() +  "\n content: " + event);
+    }
     @Override
     public String toString(){
         return this.getPid() + " " + this.getName() + " " + this.getAge() + " " + this.getRole();
@@ -91,7 +100,7 @@ public class Person {
     @Override
     public boolean equals(Object o){
         if(o instanceof Person){
-            if(this.getPid() == ((Person)o).getPid()){
+            if(this.hashCode() == ((Person)o).hashCode() && this.getName().equals(((Person)o).getName())){
                 return true;
             }else{
                 return false;
@@ -99,5 +108,10 @@ public class Person {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getPid();
     }
 }
