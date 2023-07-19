@@ -18,6 +18,7 @@ public class UsingHashMap {
         pMap.put(200, em);
         pMap.put(300, p1);
         pMap.put(1, p2);
+        pMap.put(null, p);
 
         System.out.println(pMap);
 
