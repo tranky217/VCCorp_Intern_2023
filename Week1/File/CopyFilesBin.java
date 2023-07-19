@@ -1,7 +1,11 @@
-package Week1.file;
+package Week1.File;
 
 import java.io.*;
+<<<<<<< HEAD:Week1/file/CopyFilesBin.java
 // import java.nio.file.*;
+=======
+
+>>>>>>> refs/remotes/origin/main:Week1/File/CopyFilesBin.java
 public class CopyFilesBin {
     public static void main(String[] args) {
 

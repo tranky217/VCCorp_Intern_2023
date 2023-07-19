@@ -1,6 +1,5 @@
-package Week1.file;
+package Week1.File;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,7 +27,9 @@ public class CopyFiles {
                 }
                 int character;
                 while((character = reader.read()) != -1){
+                    System.out.println(character);
                     writer.write(character);
+
                 }
                 writer.close();
                 reader.close();

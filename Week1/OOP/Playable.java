@@ -1,4 +1,4 @@
-package Week1.oop;
+package Week1.OOP;
 
 public interface Playable {
     public void play();

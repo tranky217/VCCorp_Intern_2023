@@ -1,4 +1,4 @@
-package Week1.file;
+package Week1.File;
 
 import java.io.*;
 import java.io.File;

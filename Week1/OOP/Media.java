@@ -1,6 +1,4 @@
-package Week1.oop;
-
-import java.util.Comparator;
+package Week1.OOP;
 
 public abstract class Media {
     private int id;

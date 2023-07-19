@@ -1,4 +1,4 @@
-package Week2.design_patterns;
+package Week2.Design_patterns;
 
 import Week2.collections.Company;
 import Week2.collections.Employee;

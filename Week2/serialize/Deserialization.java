@@ -1,6 +1,6 @@
-package Week2.serialize;
+package Week2.Serialize;
 
-import Week2.collections.Intern;
+import Week2.Collections.Intern;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

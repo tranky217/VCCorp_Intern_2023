@@ -1,10 +1,6 @@
-package Week2.design_patterns;
+package Week2.Design_patterns;
 
 import Week2.collections.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Observer {
     public static void main(String[] args) {
