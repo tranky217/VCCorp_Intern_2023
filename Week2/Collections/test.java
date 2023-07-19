@@ -1,8 +1,4 @@
-package Week2.collections;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+package Week2.Collections;
 
 public class test {
     public static void main(String[] args) {

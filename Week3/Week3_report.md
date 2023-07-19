@@ -10,10 +10,11 @@ checked exception được kế thừa trực tiếp từ lớp Exception <br>
 unchekced exception được kế thừa từ RuntimeException <br>
 - unchecked exception chỉ được tung ra trong giai đoạn run time <br>
 ## Concurrency
+![img_1.png](img_1.png)
 #### Runnable
 
-
 #### Threadpool
+
 
 #### Others
 

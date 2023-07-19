@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class Person implements Week2.collections.CompanyMember {
+public class Person implements Week2.Collections.CompanyMember {
     public static int np = 0;
     public static List<Integer> pidList = new ArrayList<>();
     public static final Comparator<Person> COMPARE_BY_AGE = new PersonComparatorByAge();

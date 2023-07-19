@@ -1,4 +1,4 @@
-package Week2.collections;
+package Week2.Collections;
 
 import java.util.HashSet;
 import java.util.Set;

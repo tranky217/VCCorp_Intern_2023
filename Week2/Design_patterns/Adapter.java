@@ -1,8 +1,8 @@
 package Week2.Design_patterns;
 
-import Week2.collections.Company;
-import Week2.collections.Employee;
-import Week2.collections.Intern;
+import Week2.Collections.Company;
+import Week2.Collections.Employee;
+import Week2.Collections.Intern;
 
 public class Adapter {
     public static void main(String[] args) {
