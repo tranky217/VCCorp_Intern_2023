@@ -3,18 +3,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 public class ConcurrentUtils {
     public static void stop(ExecutorService executor) {
-        try {
-            executor.shutdown();
-            executor.awaitTermination(60, TimeUnit.SECONDS);
-        }
-        catch (InterruptedException e) {
-            System.err.println("termination interrupted");
-        }
-        finally {
-            if (!executor.isTerminated()) {
-                System.err.println("killing non-finished tasks");
+        executor.shutdown();
+        try{
+            // tasks can be completed during this time interval
+            // shut down immediately after time out
+            if(!executor.awaitTermination(1000, TimeUnit.MILLISECONDS)){
+                executor.shutdownNow();
             }
-            executor.shutdownNow();
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
     }
 

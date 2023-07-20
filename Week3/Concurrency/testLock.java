@@ -4,16 +4,13 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.stream.IntStream;
 
 import static Week3.Concurrency.ConcurrentUtils.sleep;
 import static Week3.Concurrency.ConcurrentUtils.stop;
 
-public class test {
+public class testLock {
     public static void main(String[] args) {
         // lock
 //        ExecutorService executor = Executors.newFixedThreadPool(2);
