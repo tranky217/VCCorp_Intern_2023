@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class TestThreadPool {
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
 
         // runnable task
         Runnable runnableTask = () -> {
@@ -37,8 +37,8 @@ public class TestThreadPool {
         callableList.add(callableTask1);
 
         // submit 1 task
-//        Future<String> future = executor.submit(callableTask);
-//        System.out.println(future.get());
+        Future<String> fut = executor.submit(callableTask1);
+        System.out.println("first: " + fut.get(1000, TimeUnit.MILLISECONDS));
 
         // invokeAny
         String result = executor.invokeAny(callableList);
@@ -57,8 +57,9 @@ public class TestThreadPool {
 //        }
 
         executor.shutdown();
+        // stop accept new tasks and shut down all current running tasks are
         try{
-            // tasks can be completed during this time interval
+            // tasks can be completed during this time intervalfinished
             // shut down immediately after time out
             if(!executor.awaitTermination(1000, TimeUnit.MILLISECONDS)){
                 executor.shutdownNow();
