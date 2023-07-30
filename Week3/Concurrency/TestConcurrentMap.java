@@ -16,15 +16,15 @@ public class TestConcurrentMap {
     public static void main(String[] args) throws Exception {
         givenConcurrentMap_whenSumParallel_thenCorrect();
         givenHashMap_whenSumParallel_thenError();
-        ConcurrentMap<String, Integer> map = new ConcurrentHashMap<>(){};
-        map.putIfAbsent("a", 1);
-        map.putIfAbsent("b", 2);
-        map.putIfAbsent("c", 3);
-        map.putIfAbsent("d", 4);
-
-        map.forEach((k, v) -> {
-            System.out.println("key: " + k + "| value: " + v);
-        });
+//        ConcurrentMap<String, Integer> map = new ConcurrentHashMap<>(){};
+//        map.putIfAbsent("a", 1);
+//        map.putIfAbsent("b", 2);
+//        map.putIfAbsent("c", 3);
+//        map.putIfAbsent("d", 4);
+//
+//        map.forEach((k, v) -> {
+//            System.out.println("key: " + k + "| value: " + v);
+//        });
     }
     @Test
     public static void givenHashMap_whenSumParallel_thenError() throws Exception {
