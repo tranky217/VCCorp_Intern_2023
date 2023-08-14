@@ -33,8 +33,19 @@ nó quản lý không gian tên file và quy định truy cập của client.
 ##### 2.2.1  Namenode
 - Namenode duy trì metadata cho các tất cả các file trong cụm, và chúng được lưu trong ổ đĩa local tại namenode đó.
 - Thành phần của namenode có: Namespace Image file (FS image), Edit log
-
+- Namespace Image file (FS image): là file thể hiện trạng thái của của hệ thông file sau khi có sửa đổi.
+Mỗi lần sửa đổi, fs image sẽ có 1 transaction ID mới (monotonic increase).
+- Edit log: là file chứa các bản ghi thể hiện tất cả những sự thay đổi đã diễn ra từ lần cập nhật gần nhất của fs image.
+- Cách Namenode hoạt động: Khi khởi chạy namenode, đầu tiên nó sẽ tạo ánh xạ chứa vị trí của data block của tất cả các file từ block report được gửi
+định, namenode tính toán và lưu nó ở bộ nhớ. Ngoài ra, trong giai đoạn khởi chạy nó cũng dùng fs image sử dụng edit log để lấy được trang thái mới nhất của metadata của hệ thống file.
+nó cập nhật trạng thái mới nhất vào fs image và tiếp tục hoạt động vơi edit log (rỗng, vì đã sử dụng từ đầu rồi). 
+- Vấn đề xảy ra khi edit log rất lớn, nó làm thời gian khởi chạy namenode lâu => Secondary Namenode.
+- Secondary Namenode: nó không phải backup của primary namenode, nó dùng để merge fs image và edit log định kỳ 
+- Vấn đề về single-point-of-failure => back up metadata, secondary namenode, standby namenode.
+#### 2.2.2 Datanode
+- Datanode: là nơi thật sự lưu trữ dữ liệu trong hệ thông file của nó, và nó cũng thường xuyên gửi block report về cho namenode.
 ### 3. Quá trình đọc-ghi trong hdfs
+
 ### 4. Khái niệm namenode, datanode, secondary namenode, hdfs block, block replication
 ### 5. Thành phần của yarn, khái niệm mapreduce
 ### 6. Các thành phần của spark, spark API(action, transformation)
