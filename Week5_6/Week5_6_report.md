@@ -16,21 +16,24 @@ có thể ở dạng có cấu trúc (structured data), không có cấu trúc (
 Namenode lữu trữ metadata về những data được lưu trữ ở Datanode, Datanode là nơi dữ liệu thực sự được lưu trữ.
 - Yarn (Yet another resource negotiator): hỗ trợ quản lý tài nguyên trên các cụm, nó lập lịch trình cho các job được gửi từ client và phần bố tài nguyên cho các node trong cụm để thực hiện job đó. Hai thành phần chính của nó là Resource manager và Node manager.
 - MapReduce: là một hadoop framework, bằng cách sử dụng các thuật toán phân tán và song song, MapReduce cho phép thực hiện logic của quá trình xử lý và giúp viết các ứng dụng chuyển đổi các tập dữ liệu lớn thành một tập hợp có thể quản lý được.
-### 2. Khái niệm cơ bản về hdfs, yarn, spark
-#### 2.1 HDFS
+
+### 2. Khái niệm namenode, datanode, secondary namenode, hdfs block, block replication
+
+### 3. Khái niệm cơ bản về hdfs, yarn, spark
+#### 3.1 HDFS
 - hdfs là hệ thống tập tin phân tán được thiết kế để sử dụng cho phần cứng thương mại. Nó khác với các hệ thống file thông thường.
 Nó có tính chịu lỗi cao và triển khai trên được những phần cứng rẻ tiền. Nó cho phép truy cập dữ liệu với thông lượng lớn. 
 - Tính chất của hdfs: xử lý lỗi phần cứng, truy cập dữ liệu dạng streaming, lưu trữ dữ liệu lớn, linh động với nhiều loại phần cứng và các phần mềm.
 - Giới hạn: Hdfs cung cấp truy cập theo batch (offline) hơn là truy cập theo streaming (online).
 và giới hạn số lượng file lưu tại metadata trên namenode bị giới hạn bới bộ nhớ tại namenode đó.
-#### 2.2 Thành phần của HDFS
+#### 3.2 Thành phần của HDFS
 - Kiến trúc của HDFS là master/slave.
 - Một cụm hdfs bao gồm 1 namenode, chứa metadata về các dữ liệu được lưu trữ ở các node trong cụm.
 nó quản lý không gian tên file và quy định truy cập của client. 
 - Trong một cụm hdfs có nhiều node và thường mỗi node có 1 datanode, datanode phục vụ việc đọc, ghi từ client ...
 - Kiến trúc của HDFS
 ![img.png](img.png)
-##### 2.2.1  Namenode
+##### 3.2.1  Namenode
 - Namenode duy trì metadata cho các tất cả các file trong cụm, và chúng được lưu trong ổ đĩa local tại namenode đó.
 - Thành phần của namenode có: Namespace Image file (FS image), Edit log
 - Namespace Image file (FS image): là file thể hiện trạng thái của của hệ thông file sau khi có sửa đổi.
@@ -42,10 +45,26 @@ nó cập nhật trạng thái mới nhất vào fs image và tiếp tục hoạ
 - Vấn đề xảy ra khi edit log rất lớn, nó làm thời gian khởi chạy namenode lâu => Secondary Namenode.
 - Secondary Namenode: nó không phải backup của primary namenode, nó dùng để merge fs image và edit log định kỳ 
 - Vấn đề về single-point-of-failure => back up metadata, secondary namenode, standby namenode.
-#### 2.2.2 Datanode
+#### 3.2.2 Datanode
 - Datanode: là nơi thật sự lưu trữ dữ liệu trong hệ thông file của nó, và nó cũng thường xuyên gửi block report về cho namenode.
-### 3. Quá trình đọc-ghi trong hdfs
-
-### 4. Khái niệm namenode, datanode, secondary namenode, hdfs block, block replication
+### 4. Quá trình đọc-ghi trong hdfs
+#### 4.1 Quá trình ghi
+- Việc ghi được khời tạo bởi client, có thể dùng Java API hoặc hdfs command line.
+- Đầu tiên client lưu trữ file tại ổ đĩa local của nó.
+- Client gửi request đến Namenode, yêu cầu ghi file, Namenode kiểm tra tên file, permission của client và trả lại metadata tương ứng.
+- Client nhận được thông tin danh sách các Datanode trong metadata, nó bắt đầu chia file ra theo các block và bắt đầu gửi cho Datanode đầu tiên.
+- Datanode nhận được từng block, lưu trữ lại local disk và bắt đầu chuyển sang cho các Datanode trong danh sách mà Namenode chỉ định cho client.
+![WriteProcess.png](..%2F..%2F..%2FWriteProcess.png)
+Mô hình mô trả quá trình viết.
+#### 4.2 Quá trình đọc
+- Việc đọc cũng gần nhu tương tự, client bắt đầu gửi request cho Namenode về yêu cầu đọc một file.
+- Namenode trả về cho client metadata mô tả địa chỉ của một số lượng Datanode định sẵn. Danh sách này ưu tiên sắp xếp theo khoảng cách đến client.
+Nếu client đó chính là 1 Datanode mà nó cũng chứa block cần đọc thì nó sẽ đọc tại local luôn.
+- Nếu không, client sẽ connect đến Datanode gần nhất theo danh sách được trả về từ Namenode và data được truyền đến client cho đến hết block.
+- Quá trình tiếp tục, cho đến hết 1 batch => batch tiếp theo, client lại nhận danh sách từ Namenode ...
+- Việc đọc theo nhiều batch là hoàn toàn trong suốt đối với client, nếu có lỗi xảy ra trong việc connect đến Datanode, client sẽ chuyển đến Datanode khác theo thứ tự khoảng cách, max checksum cũng được sử dụng để kiểm tra lỗi truyền tải.
+![img_1.png](img_1.png)
+Mô hình miêu tả quá trình đọc.
 ### 5. Thành phần của yarn, khái niệm mapreduce
+
 ### 6. Các thành phần của spark, spark API(action, transformation)
