@@ -123,6 +123,13 @@ Tài nguyên được chia đều giữa các queue, và các chia đều giữa
 - Input và Output: làm việc với dữ liệu dạng key-value pairs, và dữ liệu phải đáp ứng serializable, comparable. Serializable cho việc truyền tải dữ liệu, comparable cho việc sắp xếp ở reduce phase.
 - Map phase: chuyển đổi dữ liệu sang dạng trung gian.
 - Reduce phase: được group lại thành một tập nhỏ hơn từ tập key trung gian.
+##### 2.5.1 workflow
+- Đầu tiên dữ liệu đầu vào được chia tách ra thành từng phần (input split) và gửi đến các máy trong cụm.
+- Mỗi máy trong cụm làm việc với một input split, và trong quá trình map không giao tiếp với nhau.
+- Các máy thực hiện map task và lưu nó vào local disk, trước đó đầu ra đã được phân vùng (nếu như số lượng reducer > 1), dữ liệu trong mỗi vùng đều được sắp xếp bằng key. (tất cả record của 1 key đều năm trên 1 partition)
+- reduce task bắt đầu bằng việc copy các đầu ra từ các map task để tạo partition của nó. Dữ liệu này có thể lưu ở ram hoặc disk, dữ liệu được copy đồng thời từ các map task đã xong chứ không đợi xong hết.
+- các partition từ map đã được sort, khi copy đến reducer sẽ được merge (như trong merge sort)(shuffle and sort).
+- reduce task tính toán group toàn bộ key giống nhau để tạo ra kết quả và lưu vào hdfs.
 ### 3. Spark
 Spark là một platform để xử lý dữ liệu thay thế cho MapReduce.
 Spark làm tốt hơn MapReduce ở một vài yếu tố.
@@ -148,6 +155,8 @@ Spark làm tốt hơn MapReduce ở một vài yếu tố.
 - Trừu tượng hóa dự liệu với RDD (Resilient Distributed Dataset)
 - DataFrames
 - Datasets
+##### 3.4.1 RDD
+
 #### 3.5 Action and Transformation
 - Transformation là hoạt động của Spark API mà nó thực hiện biến đổi, lọc ... và trả về Spark data abstraction như RDD hay DataFrame. (chỉ để xây dựng Execution plan để action thực hiện)
 - Action là hoạt động mà Spark API thực hiện thực sự trên data abstraction đó và nó trả về object bình thường.
