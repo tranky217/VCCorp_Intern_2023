@@ -46,8 +46,12 @@ Có thể convert từ RDD, DataFrame sang Dataset, tái tạo RDD từ Dataset 
 - cat: đọc file
 #### 2.2 Command liên quan đến account và permission
 - chmod: thay đổi quyền truy cập trên file
+`chmod [option] mode file1 file2 ...` <br>
+`chmod 777 text.txt` thay đổi quyền truy cập trên text.txt 777 là 111 111 111 ứng với rwx cho cả 3 nhóm đối tượng, owner, group owner,và người khác. <br>
 - chown: đổi quyền sở hữu cho file hoặc thư mục
+`chown user1 test.txt` chuyển owner sang cho user1.
 #### 2.3 Lệnh đường ống
+
 - | đầu vào ra của lệnh trước sẽ là đầu vào của lệnh sau
 - cat test.txt | grep "a" : tìm kí tự a trong test.txt
 - echo "abc" > test.txt : ghi đè abc vào file test.txt
@@ -55,6 +59,8 @@ Có thể convert từ RDD, DataFrame sang Dataset, tái tạo RDD từ Dataset 
 #### 2.4 Process command ...
 - ps, ps aux: show các process sở hữu bởi user và process đang chạy
 - kill: gửi singnal đến 1 process, signal 9 là kết thúc process 
+`kill [singale] Pid`, singal có thể là number hoặc chữ. <br>
+`kill -l` để check signal name. 
 - top, htop: show các tiến trình và tài nguyên nó sử dụng (htop cho phép dùng chuột để tương tác)
 
 ### 3. Docker vơi python flask
