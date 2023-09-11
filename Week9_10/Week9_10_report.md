@@ -129,6 +129,10 @@ Thêm conf này vào hdfs-site.xml
 ![img_3.png](img_3.png)
 - Yarn
 ![img_4.png](img_4.png)
+- Điều chỉnh cho các tiến trình Namenode và Datanode chạy trên user hdfs1, các tiến trình Resource manager và Node manager chạy trên user yarn1 tương ứng. <br>
+- Copy public key để các user có thể ssh không cần password
+- Copy cấu hình hadoop cho các user yarn1
+- Start các tiến trình riêng rẽ
 ### 2. Chạy chương trình word count với hadoop mapreduce <br>
 - Tạo project maven trên IntelliJ, chạy `mvn clean package` để tạo file jar của project.
 - Copy jar file lên node master ![img_5.png](img_5.png) <br>
