@@ -146,3 +146,10 @@ Thêm conf này vào hdfs-site.xml
 ### 3. Sự khác nhau giữa các phiên bản hadoop, spark 2.x và 3.x <br>
 
 ## Phần 2. SPARK và PYSPARK <br>
+### 1. Set up Spark
+- Download spark và giải 
+- ![img_9.png](img_9.png)
+- ![img_10.png](img_10.png)
+- ![img_11.png](img_11.png)
+- ![img_12.png](img_12.png)
+- ![img_13.png](img_13.png)
