@@ -144,12 +144,32 @@ Thêm conf này vào hdfs-site.xml
 - Kết quả
 ![img_8.png](img_8.png)
 ### 3. Sự khác nhau giữa các phiên bản hadoop, spark 2.x và 3.x <br>
-
+#### 3.1 Hadoop
+- Hadoop 2x supports đến java 7, 3x supports đến java 8.
+- Hadoop 2x sử dụng replication để đạt được fault tolerance.
+- Hadoop 3x sủ dụng eraser coding, đỡ tốn không gian bộ nhớ hơn, storage overhead nhỏ hơn.
+- Hadoop 2x dùng hdfs balancer, 3x intra-data node balancer.
+- YARN phiên bản 3x có cải thiện về timeline service.
+- Hadoop 3x có nhiều tools support hơn.
+- Hadoop 3x support tất cả loại file system ở 2x và thêm Azure data lake.
+- Cả 2 phiên bản đều support nhiều Namenode với nhiều Namespace. <br>
+...
 ## Phần 2. SPARK và PYSPARK <br>
 ### 1. Set up Spark
-- Download spark và giải 
+- Download spark và giải nén.
+- Set up spark on yarn trong file spark-default.conf, set spark.master là yarn.
+- Set up worker trong file worker, đặt 2 ip của 2 node manager.
+### 2. Kết quả chạy wordcount với Spark trên Yarn
 - ![img_9.png](img_9.png)
 - ![img_10.png](img_10.png)
 - ![img_11.png](img_11.png)
 - ![img_12.png](img_12.png)
 - ![img_13.png](img_13.png)
+### 3. Pyspark và visualize dữ liệu
+- Thống kê dữ liệu theo tuổi.
+![img_14.png](img_14.png)
+- Pie chart hiển thị % giới tính.
+![img_15.png](img_15.png)
+- Vì là dữ liệu sinh random nên tỷ lệ phân bố sẽ gần bằng nhau trên tập dữ liệu lớn.
+- Tải file parquet lên hdfs.
+![img_16.png](img_16.png)
